@@ -5,7 +5,7 @@ class VGTSLogin {
 
   WebViewWidget? webView;
 
-  Function(String)? onSuccess;
+  Function(dynamic)? onSuccess;
   Function(String)? onFailure;
 
   VGTSLogin({this.onSuccess, this.onFailure}) {

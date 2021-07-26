@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_user_agentx/flutter_user_agent.dart';
+import 'package:vgts_login/core/user.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewWidget extends StatefulWidget {
@@ -81,9 +83,12 @@ class _WebViewState extends State<WebViewWidget> {
 
   JavascriptChannel _toasterJavascriptChannel(BuildContext context) {
     return JavascriptChannel(
-        name: 'setPasscodeForMobile',
+        name: 'setUserForMobile',
         onMessageReceived: (JavascriptMessage msg) {
-            Navigator.pop(context,msg.message);
+            Map<String, dynamic> message = json.decode(msg.message);
+            User data = User.fromJson(message);
+            print(data.toJson());
+            Navigator.pop(context,data);
             return;
     });
   }
