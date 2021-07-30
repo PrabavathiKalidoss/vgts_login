@@ -124,7 +124,7 @@ class _WebViewState extends State<WebViewWidget> {
                   Positioned(
                     left: 0,
                     top: 0,
-                    child: IconButton(icon: Icon(Icons.arrow_back),onPressed: () async{
+                    child: IconButton(icon: Icon(Icons.arrow_back), onPressed: () async{
                         if (await controllerGlobal!.canGoBack()) {
                           await controllerGlobal!.goBack();
                           return;
