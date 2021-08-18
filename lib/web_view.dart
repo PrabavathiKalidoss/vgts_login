@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info/package_info.dart';
 import 'package:vgts_login/core/user.dart';
+import 'package:webview_flutter/platform_interface.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewWidget extends StatefulWidget {
@@ -15,7 +16,11 @@ class WebViewWidget extends StatefulWidget {
 
 class _WebViewState extends State<WebViewWidget> {
 
+
+
+
   String _selectedUrl = 'http://account.dev.vgts.xyz/signin?mode=mobile';
+
   final Completer<WebViewController> _controller = Completer<WebViewController>();
 
   bool showWebView = false;
@@ -94,7 +99,6 @@ class _WebViewState extends State<WebViewWidget> {
                               javascriptMode: JavascriptMode.unrestricted,
                               onWebViewCreated: (WebViewController webViewController) {
                                 controllerGlobal = webViewController;
-
                                 // _controller.future.then((value) => controllerGlobal = value);
                                 // _controller.complete(webViewController);
                               },
@@ -106,6 +110,13 @@ class _WebViewState extends State<WebViewWidget> {
                               },
                               javascriptChannels: <JavascriptChannel>{
                                 _toasterJavascriptChannel(context),
+                              },
+                              onWebResourceError: (WebResourceError error){
+                                print("Error ${error.description}");
+                                print(error.domain);
+                                print(error.errorCode);
+                                print(error.errorType);
+                                print(error.failingUrl);
                               },
                               onPageStarted: (String url) {
                                 print('Page started loading: $url');
