@@ -18,11 +18,27 @@ class ViewPage extends ViewModelBuilderWidget<ViewPageViewModel>{
           title: const Text('VGTS',textScaleFactor: 1,),
         ),
         body: Center(
-          child: MaterialButton(
-            child: Text("Tap"),
-            onPressed: () {
-              viewModel.login!.openWebView(context);
-            },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+
+              MaterialButton(
+                child: Text("Sign In"),
+                onPressed: () {
+                  viewModel.login!.signIn(context);
+                },
+              ),
+
+              Padding(padding:  EdgeInsets.only(top: 20.0)),
+
+              MaterialButton(
+                child: Text("Sign Up"),
+                onPressed: () {
+                  viewModel.login!.signUp(context);
+                },
+              ),
+            ],
           ),)
     );
   }

@@ -9,6 +9,9 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewWidget extends StatefulWidget {
 
+ final String url ;
+ WebViewWidget({required this.url});
+
   @override
   _WebViewState createState() => _WebViewState();
 }
@@ -90,7 +93,7 @@ class _WebViewState extends State<WebViewWidget> {
                           Flexible(
                             child: WebView(
                               userAgent: _userAgent,
-                              initialUrl: _selectedUrl,
+                              initialUrl: widget.url,
                               javascriptMode: JavascriptMode.unrestricted,
                               onWebViewCreated: (WebViewController webViewController) {
                                 controllerGlobal = webViewController;

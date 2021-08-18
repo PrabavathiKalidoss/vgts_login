@@ -9,11 +9,11 @@ class VGTSLogin {
   Function(String)? onFailure;
 
   VGTSLogin({this.onSuccess, this.onFailure}) {
-    webView = new WebViewWidget();
+    webView = new WebViewWidget(url: '',);
   }
 
-  openWebView(BuildContext context) {
-    Navigator.push(context,MaterialPageRoute(builder: (context) => WebViewWidget())).then((value){
+  signIn(BuildContext context) {
+    Navigator.push(context,MaterialPageRoute(builder: (context) => WebViewWidget(url:"http://account.dev.vgts.xyz/signin?mode=mobile",))).then((value){
       if(value!=null) {
         onSuccess!(value);
       }
@@ -21,6 +21,17 @@ class VGTSLogin {
         onFailure!("Error");
       }
    });
+  }
+
+  signUp(BuildContext context) {
+    Navigator.push(context,MaterialPageRoute(builder: (context) => WebViewWidget(url:"http://account.dev.vgts.xyz/register?mode=mobile"))).then((value){
+      if(value!=null) {
+        onSuccess!(value);
+      }
+      else {
+        onFailure!("Error");
+      }
+    });
   }
 
 }
