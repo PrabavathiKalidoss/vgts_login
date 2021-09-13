@@ -13,7 +13,7 @@ class VGTSLogin {
   }
 
   signIn(BuildContext context) {
-    Navigator.push(context,MaterialPageRoute(builder: (context) => WebViewWidget(url:"http://account.dev.vgts.xyz/signin?mode=mobile",))).then((value){
+    Navigator.push(context,MaterialPageRoute(builder: (context) => WebViewWidget(url:"http://accounts.dev.vgts.xyz/signin?mode=mobile",))).then((value){
       if(value!=null) {
         onSuccess!(value);
       }
@@ -24,7 +24,7 @@ class VGTSLogin {
   }
 
   signUp(BuildContext context) {
-    Navigator.push(context,MaterialPageRoute(builder: (context) => WebViewWidget(url:"http://account.dev.vgts.xyz/register?mode=mobile"))).then((value){
+    Navigator.push(context,MaterialPageRoute(builder: (context) => WebViewWidget(url:"http://accounts.dev.vgts.xyz/register?mode=mobile"))).then((value){
       if(value!=null) {
         onSuccess!(value);
       }
