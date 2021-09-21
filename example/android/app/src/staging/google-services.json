@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "527813323910",
+    "project_id": "vgts-auth-dev",
+    "storage_bucket": "vgts-auth-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:527813323910:android:dce99e7ad4a63c893b7507",
+        "android_client_info": {
+          "package_name": "vgts.vgts_login_example.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "527813323910-059p308mkm04pcp3m5r7srd1vcajtdj3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEsmGOLUrBIiIMy54F8HZkuUbRECdv5NU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "527813323910-059p308mkm04pcp3m5r7srd1vcajtdj3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:527813323910:android:b7abe7c1576441b93b7507",
+        "android_client_info": {
+          "package_name": "vgts.vgts_login_example.staging"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "527813323910-059p308mkm04pcp3m5r7srd1vcajtdj3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEsmGOLUrBIiIMy54F8HZkuUbRECdv5NU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "527813323910-059p308mkm04pcp3m5r7srd1vcajtdj3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

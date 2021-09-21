@@ -18,8 +18,8 @@ class WebViewWidget extends StatefulWidget {
 
 class _WebViewState extends State<WebViewWidget> {
 
-  String _selectedUrl = 'http://account.dev.vgts.xyz/signin?mode=mobile';
-  final Completer<WebViewController> _controller = Completer<WebViewController>();
+  final Completer<WebViewController> _controller = Completer<
+      WebViewController>();
 
   bool showWebView = false;
   String? _userAgent;
@@ -40,122 +40,139 @@ class _WebViewState extends State<WebViewWidget> {
 
   WebViewController? controllerGlobal;
 
-  Future<bool> _onWillPop (BuildContext context) async {
+  Future<bool> _onWillPop(BuildContext context) async {
     if (await controllerGlobal!.canGoBack()) {
       print("onwillpop");
       await controllerGlobal!.goBack();
-      return Future.value(false) ;
+      return Future.value(false);
     } else {
       return Future.value(true);
     }
   }
 
   Future fetchUserAgent() async {
-
     PackageInfo _packageInfo = await PackageInfo.fromPlatform();
 
-    String versionString = "${_packageInfo.version}-${_packageInfo.buildNumber}-${_packageInfo.packageName}";
+    String versionString = "${_packageInfo.version}-${_packageInfo
+        .buildNumber}-${_packageInfo.packageName}";
 
-    final dartVersionString = Platform.version.split(" ").first;
+    final dartVersionString = Platform.version
+        .split(" ")
+        .first;
 
     final osString = Platform.operatingSystem;
-    final osVersionString = Platform.operatingSystemVersion.split(" ").first;
+    final osVersionString = Platform.operatingSystemVersion
+        .split(" ")
+        .first;
 
-    _userAgent = "Info/$versionString Dart/$dartVersionString OS/$osString-$osVersionString";
+    _userAgent =
+    "Info/$versionString Dart/$dartVersionString OS/$osString-$osVersionString";
     debugPrint("UserAgent $_userAgent");
   }
 
   @override
   Widget build(BuildContext context) {
-        return WillPopScope(
-          onWillPop: () =>_onWillPop(context),
-          child: Scaffold(
-            backgroundColor: Colors.white,
-            body: SafeArea(
-              child: Stack(
-                children: [
+    return WillPopScope(
+      onWillPop: () => _onWillPop(context),
+      child: Scaffold(
+          backgroundColor: Colors.white,
+          body: SafeArea(
+            child: Stack(
+              children: [
 
-                  Positioned(
-                    top: 0,
-                    right: 0,
-                    left: 0,
-                    bottom: 0,
-                    child: Container(
-                      height: MediaQuery.of(context).size.height,
-                      child: Column(
-                        children: [
+                Positioned(
+                  top: 0,
+                  right: 0,
+                  left: 0,
+                  bottom: 0,
+                  child: Container(
+                    height: MediaQuery
+                        .of(context)
+                        .size
+                        .height,
+                    child: Column(
+                      children: [
 
-                          progress < 100 ? LinearProgressIndicator(
-                            value: progress / 100,
-                            valueColor: AlwaysStoppedAnimation(Theme.of(context).primaryColor),
-                          ) : Container(),
+                        progress < 100 ? LinearProgressIndicator(
+                          value: progress / 100,
+                          valueColor: AlwaysStoppedAnimation(Theme
+                              .of(context)
+                              .primaryColor),
+                        ) : Container(),
 
-                          Flexible(
-                            child: WebView(
-                              userAgent: _userAgent,
-                              initialUrl: widget.url,
-                              javascriptMode: JavascriptMode.unrestricted,
-                              onWebViewCreated: (WebViewController webViewController) {
-                                controllerGlobal = webViewController;
+                        Flexible(
+                          child: WebView(
+                            userAgent: _userAgent,
+                            initialUrl: widget.url,
+                            javascriptMode: JavascriptMode.unrestricted,
+                            onWebViewCreated: (
+                                WebViewController webViewController) {
+                              controllerGlobal = webViewController;
 
-                                // _controller.future.then((value) => controllerGlobal = value);
-                                // _controller.complete(webViewController);
-                              },
-                              onProgress: (int progress) {
-                                setState(() {
-                                  this.progress = progress;
-                                });
-                                print("WebView is loading (progress : $progress%)");
-                              },
-                              javascriptChannels: <JavascriptChannel>{
-                                _toasterJavascriptChannel(context),
-                              },
-                              onPageStarted: (String url) {
-                                print('Page started loading: $url');
-                              },
-                              onPageFinished: (String url) {
-                                print('Page finished loading: $url');
-                              },
-                              gestureNavigationEnabled: true,
-                            ),
-                            ),
-                        ],
-                      ),
+                              // _controller.future.then((value) => controllerGlobal = value);
+                              // _controller.complete(webViewController);
+                            },
+                            onProgress: (int progress) {
+                              setState(() {
+                                this.progress = progress;
+                              });
+                              print(
+                                  "WebView is loading (progress : $progress%)");
+                            },
+                            javascriptChannels: <JavascriptChannel>{
+                              _toasterJavascriptChannel(context),
+                            },
+                            onPageStarted: (String url) {
+                              print('Page started loading: $url');
+                            },
+                            onPageFinished: (String url) {
+                              print('Page finished loading: $url');
+                            },
+                            gestureNavigationEnabled: true,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
+                ),
 
-                  Positioned(
-                    left: 0,
-                    top: 0,
-                    child: IconButton(icon: Icon(Icons.arrow_back), onPressed: () async{
-                        if (await controllerGlobal!.canGoBack()) {
-                          await controllerGlobal!.goBack();
-                          return;
-                        }
-                        Navigator.pop(context);
-                        return;
-                      },
-                    ),
-                  )
+                Positioned(
+                  left: 0,
+                  top: 0,
+                  child: IconButton(
+                    icon: Icon(Icons.arrow_back), onPressed: () async {
+                    if (await controllerGlobal!.canGoBack()) {
+                      await controllerGlobal!.goBack();
+                      return;
+                    }
+                    Navigator.pop(context);
+                    return;
+                  },
+                  ),
+                )
 
-                ],
-              ),
-            )
+              ],
+            ),
+          )
 
-          ),
-        );
+      ),
+    );
   }
 
   JavascriptChannel _toasterJavascriptChannel(BuildContext context) {
     return JavascriptChannel(
         name: 'setUserForMobile',
         onMessageReceived: (JavascriptMessage msg) {
-            Map<String, dynamic> message = json.decode(msg.message);
-            User data = User.fromJson(message);
-            print(data.toJson());
-            Navigator.pop(context,data);
-            return;
-    });
+          Map<String, dynamic> message = json.decode(msg.message);
+          User data = User.fromJson(message);
+          print(data.toJson());
+          Navigator.pop(context, data);
+          return;
+        });
   }
 
 }
+
+
+
+enum AppEnvironment { DEV, STAGING, PRODUCTION }

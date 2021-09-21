@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "605148318652",
+    "project_id": "vgts-auth",
+    "storage_bucket": "vgts-auth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:605148318652:android:e35241a1c7213ce66bb9b9",
+        "android_client_info": {
+          "package_name": "vgts.vgts_login_example"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "605148318652-pinn3qf97t5jqarp6ruch88aeh62igvp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGZVv6flmSwy4c_snX3y-a2cmdbtwwkKM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "605148318652-pinn3qf97t5jqarp6ruch88aeh62igvp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

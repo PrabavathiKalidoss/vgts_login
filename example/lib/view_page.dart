@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:vgts_login_example/view_page_viewmodel.dart';
 
-
 class ViewPage extends ViewModelBuilderWidget<ViewPageViewModel>{
 
   @override

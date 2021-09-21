@@ -40,6 +40,29 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
+    lintOptions {
+        checkReleaseBuilds false
+    }
+
+    flavorDimensions "flavor-type"
+
+    productFlavors {
+        staging {
+            dimension "flavor-type"
+            applicationIdSuffix ".staging"
+            resValue "string", "app_name", "Auth Stag"
+        }
+        dev {
+            dimension "flavor-type"
+            applicationIdSuffix ".dev"
+            resValue "string", "app_name", "Auth Dev"
+        }
+        prod {
+            dimension "flavor-type"
+            resValue "string", "app_name", "Auth"
+        }
+    }
+
 
     buildTypes {
         release {
@@ -56,4 +79,9 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation platform('com.google.firebase:firebase-bom:28.4.1')
+    implementation 'com.google.firebase:firebase-analytics'
 }
+
+apply plugin: 'com.google.gms.google-services'
+
