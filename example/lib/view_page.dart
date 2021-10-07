@@ -6,6 +6,7 @@ class ViewPage extends ViewModelBuilderWidget<ViewPageViewModel>{
 
   @override
   void onViewModelReady(ViewPageViewModel viewModel) {
+    print("PRINT INIT");
     viewModel.init();
     super.onViewModelReady(viewModel);
   }

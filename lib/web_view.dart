@@ -18,12 +18,12 @@ class WebViewWidget extends StatefulWidget {
 
 class _WebViewState extends State<WebViewWidget> {
 
-  final Completer<WebViewController> _controller = Completer<
-      WebViewController>();
+  final Completer<WebViewController> _controller = Completer<WebViewController>();
 
   bool showWebView = false;
   String? _userAgent;
   int progress = 0;
+  bool dataSuccess = false;
 
   @override
   void initState() {
@@ -163,10 +163,12 @@ class _WebViewState extends State<WebViewWidget> {
     return JavascriptChannel(
         name: 'setUserForMobile',
         onMessageReceived: (JavascriptMessage msg) {
-          Map<String, dynamic> message = json.decode(msg.message);
-          User data = User.fromJson(message);
-          print(data.toJson());
-          Navigator.pop(context, data);
+          if (!dataSuccess) {
+            dataSuccess = true;
+            Map<String, dynamic> message = json.decode(msg.message);
+            User data = User.fromJson(message);
+            Navigator.pop(context, data);
+          }
           return;
         });
   }
