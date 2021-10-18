@@ -104,6 +104,7 @@ class _WebViewState extends State<WebViewWidget> {
                           child: WebView(
                             userAgent: _userAgent,
                             initialUrl: widget.url,
+                            debuggingEnabled: true,
                             javascriptMode: JavascriptMode.unrestricted,
                             onWebViewCreated: (
                                 WebViewController webViewController) {
