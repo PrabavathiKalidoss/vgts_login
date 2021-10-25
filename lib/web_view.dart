@@ -108,8 +108,9 @@ class _WebViewState extends State<WebViewWidget> {
                             javascriptMode: JavascriptMode.unrestricted,
                             onWebViewCreated: (
                                 WebViewController webViewController) {
-                              controllerGlobal = webViewController;
-
+                                 webViewController.clearCache();
+                                 controllerGlobal = webViewController;
+                         
                               // _controller.future.then((value) => controllerGlobal = value);
                               // _controller.complete(webViewController);
                             },
