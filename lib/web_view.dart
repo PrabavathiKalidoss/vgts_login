@@ -110,6 +110,8 @@ class _WebViewState extends State<WebViewWidget> {
                                 WebViewController webViewController) {
                                  webViewController.clearCache();
                                  controllerGlobal = webViewController;
+                               final cookieManager = CookieManager();
+                               cookieManager.clearCookies();
                          
                               // _controller.future.then((value) => controllerGlobal = value);
                               // _controller.complete(webViewController);
