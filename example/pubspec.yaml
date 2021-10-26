@@ -12,9 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   stacked: ^2.1.8
-  firebase_remote_config: ^0.10.0+1
   flutter_styled_toast: ^2.0.0
-  firebase_core: ^1.0.0
 
   vgts_login:
     # When depending on this package from a real application you should use:

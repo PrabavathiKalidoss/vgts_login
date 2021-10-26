@@ -9,7 +9,7 @@ GetIt locator = GetIt.instance;
 
 void setupLocator() {
 
-  locator.registerLazySingleton(() => FirebaseRemoteHelper());
+  // locator.registerLazySingleton(() => FirebaseRemoteHelper());
   locator.registerLazySingleton(() => AppConfigService());
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => ToastService());
