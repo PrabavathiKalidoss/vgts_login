@@ -168,6 +168,11 @@ class _WebViewState extends State<WebViewWidget> {
         name: 'setUserForMobile',
         onMessageReceived: (JavascriptMessage msg) {
           if (!dataSuccess) {
+
+            controllerGlobal?.clearCache();
+            final cookieManager = CookieManager();
+            cookieManager.clearCookies();
+
             dataSuccess = true;
             Map<String, dynamic> message = json.decode(msg.message);
             User data = User.fromJson(message);
