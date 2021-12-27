@@ -108,11 +108,12 @@ class _WebViewState extends State<WebViewWidget> {
                             javascriptMode: JavascriptMode.unrestricted,
                             onWebViewCreated: (
                                 WebViewController webViewController) {
-                                 webViewController.clearCache();
-                                 controllerGlobal = webViewController;
-                               final cookieManager = CookieManager();
-                               cookieManager.clearCookies();
-                         
+                                 setState(() {
+                                   webViewController.clearCache();
+                                   controllerGlobal = webViewController;
+                                   final cookieManager = CookieManager();
+                                   cookieManager.clearCookies();
+                                 });
                               // _controller.future.then((value) => controllerGlobal = value);
                               // _controller.complete(webViewController);
                             },
@@ -168,15 +169,17 @@ class _WebViewState extends State<WebViewWidget> {
         name: 'setUserForMobile',
         onMessageReceived: (JavascriptMessage msg) {
           if (!dataSuccess) {
+           setState(() {
 
-            controllerGlobal?.clearCache();
-            final cookieManager = CookieManager();
-            cookieManager.clearCookies();
+             controllerGlobal?.clearCache();
+             final cookieManager = CookieManager();
+             cookieManager.clearCookies();
 
-            dataSuccess = true;
-            Map<String, dynamic> message = json.decode(msg.message);
-            User data = User.fromJson(message);
-            Navigator.pop(context, data);
+             dataSuccess = true;
+             Map<String, dynamic> message = json.decode(msg.message);
+             User data = User.fromJson(message);
+             Navigator.pop(context, data);
+           });
           }
           return;
         });
