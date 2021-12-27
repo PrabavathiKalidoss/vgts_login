@@ -107,9 +107,14 @@ class _WebViewState extends State<WebViewWidget> {
                             debuggingEnabled: true,
                             javascriptMode: JavascriptMode.unrestricted,
                             onWebViewCreated: (WebViewController webViewController) async {
+
                                controllerGlobal = webViewController;
-                              _controller.future.then((value) => controllerGlobal = value);
-                              _controller.complete(webViewController);
+                               await controllerGlobal?.clearCache();
+                               final cookieManager = new CookieManager();
+                               await cookieManager.clearCookies();
+
+                              // _controller.future.then((value) => controllerGlobal = value);
+                              // _controller.complete(webViewController);
                             },
                             onProgress: (int progress) {
                               setState(() {
@@ -163,9 +168,6 @@ class _WebViewState extends State<WebViewWidget> {
         name: 'setUserForMobile',
         onMessageReceived: (JavascriptMessage msg) async {
           if (!dataSuccess) {
-            await controllerGlobal?.clearCache();
-            final cookieManager = CookieManager();
-            await cookieManager.clearCookies();
              dataSuccess = true;
              Map<String, dynamic> message = json.decode(msg.message);
              User data = User.fromJson(message);
