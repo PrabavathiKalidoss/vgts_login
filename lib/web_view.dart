@@ -108,13 +108,13 @@ class _WebViewState extends State<WebViewWidget> {
                             javascriptMode: JavascriptMode.unrestricted,
                             onWebViewCreated: (WebViewController webViewController) async {
 
-                               controllerGlobal = webViewController;
-                               await controllerGlobal?.clearCache();
+                               await webViewController.clearCache();
                                final cookieManager = new CookieManager();
                                await cookieManager.clearCookies();
 
-                              // _controller.future.then((value) => controllerGlobal = value);
-                              // _controller.complete(webViewController);
+                               _controller.future.then((value) => controllerGlobal = value);
+                               _controller.complete(webViewController);
+
                             },
                             onProgress: (int progress) {
                               setState(() {
