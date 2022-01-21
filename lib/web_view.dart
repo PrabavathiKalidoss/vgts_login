@@ -106,7 +106,7 @@ class _WebViewState extends State<WebViewWidget> {
                             initialUrl: widget.url,
                             debuggingEnabled: true,
                             javascriptMode: JavascriptMode.unrestricted,
-                            onWebViewCreated: (WebViewController webViewController) async {
+                            onWebViewCreated: (WebViewController webViewController) {
 
                               webViewController.clearCache();
                               controllerGlobal = webViewController;
