@@ -17,6 +17,7 @@ class Api {
   Future<AppEnvironment?> configure() async {
 
     try {
+
       PackageInfo packageInfo = await PackageInfo.fromPlatform();
 
       print("Package Name ${packageInfo.packageName}");
